@@ -13,10 +13,18 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(sass|scss|css)$/,
+        loader: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.jsx', '.js'],
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     compress: true,
+    historyApiFallback: true,
   },
 };

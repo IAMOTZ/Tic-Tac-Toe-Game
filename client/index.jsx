@@ -1,6 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './Routes';
 
-const App = (<h1>I am a react application</h1>);
 
-render(App, document.getElementById('react-app'));
+render(
+  <Router>
+    <Routes />
+  </Router>,
+  document.getElementById('react-app'),
+);

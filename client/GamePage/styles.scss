@@ -1,0 +1,33 @@
+#gaming-page {
+  .main-content {
+    height: 70vh;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+  }
+  .player-symbol {
+    border: 1px solid grey;
+    text-align: center;
+    padding: 10px;
+    width: 40%;
+    margin-bottom: 10px;
+  }
+  .currentPlayer {
+    border: 1px solid grey;
+    text-align: center;
+    padding: 5px;
+    width: 20%;
+  }
+  .gamingBoard {
+    width: 30%;
+    border: 1px solid grey;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    div {
+      border: 1px solid grey;
+      padding: 10px;
+    }
+  }
+}

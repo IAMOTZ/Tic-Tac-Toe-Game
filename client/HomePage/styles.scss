@@ -1,0 +1,19 @@
+#homepage {
+  #head {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+  }
+  #main-content {
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      cursor: pointer;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
