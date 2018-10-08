@@ -19,7 +19,8 @@ class GamePage extends React.PureComponent {
     const urlMatch = search.match(/^\?id=(.+)&firstPlayer=(O|X)$/);
     const [, gameID, firstPlayer] = urlMatch || [];
     if (gameStatus !== 'waiting for second player' && gameID && firstPlayer) {
-      this.setState({ joining: true }, () => dispatch(joinGame(gameID, firstPlayer === 'X' ? 'O' : 'X')));
+      const secondPlayer = firstPlayer === 'X' ? 'O' : 'X';
+      this.setState({ joining: true }, () => dispatch(joinGame(gameID, secondPlayer, firstPlayer)));
     } else if (gameStatus !== 'waiting for second player' && !gameID && !firstPlayer) {
       const { history } = this.props;
       history.push('/');
@@ -50,7 +51,7 @@ class GamePage extends React.PureComponent {
 
   render() {
     const { startGame, joining } = this.state;
-    const { playerSymbol } = this.props;
+    const { playerSymbol, currentPlayer } = this.props;
     let component = null;
     if (!startGame && !joining) {
       component = this.renderGameInvite();
@@ -64,7 +65,7 @@ class GamePage extends React.PureComponent {
             <div className="player-symbol">
               <span>{`Player symbol: ${playerSymbol.toUpperCase()}`}</span>
             </div>
-            <div className="currentPlayer">Player .. is playing...</div>
+            <div className="currentPlayer">Player {currentPlayer.toUpperCase()} is playing...</div>
             <div className="gamingBoard">
               <div />
               <div />
@@ -86,6 +87,7 @@ class GamePage extends React.PureComponent {
 }
 
 GamePage.propTypes = {
+  currentPlayer: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   gameStatus: PropTypes.string.isRequired,
   gameURL: PropTypes.string.isRequired,
@@ -95,6 +97,7 @@ GamePage.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  currentPlayer: state.currentPlayer,
   gameStatus: state.gameStatus,
   gameURL: state.gameURL,
   playerSymbol: state.playerSymbol,

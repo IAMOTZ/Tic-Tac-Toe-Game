@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         gameID,
-        players: [playerSymbol],
         playerSymbol,
         currentPlayer: playerSymbol,
         gameStatus: 'waiting for second player',
@@ -26,19 +25,18 @@ export default (state = initialState, action) => {
       };
     }
     case actionTypes.JOIN_GAME: {
-      const { gameID, playerSymbol } = action.payload;
+      const { gameID, playerSymbol, firstPlayer } = action.payload;
       return {
         ...state,
+        currentPlayer: firstPlayer,
         gameID,
         gameStatus: 'start game',
         playerSymbol,
       };
     }
     case actionTypes.NEW_PLAYER: {
-      const { playerSymbol } = action.payload;
       return {
         ...state,
-        players: [state.playerSymbol, playerSymbol],
         gameStatus: 'start game',
       };
     }

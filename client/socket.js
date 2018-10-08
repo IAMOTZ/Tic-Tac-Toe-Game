@@ -14,7 +14,7 @@ socket.on('connect', () => {
 
 socket.on('NEW_PLAYER', (data) => {
   if (data.gameID === socketID) {
-    store.dispatch(newPlayer(data.playerSymbol));
+    store.dispatch(newPlayer(data));
   }
 });
 
