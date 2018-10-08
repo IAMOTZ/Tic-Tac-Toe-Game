@@ -20,4 +20,7 @@ const io = socketIO(server);
 
 io.on('connection', (socket) => {
   console.log(`I have got a new socket with ID: ${socket.id}`);
+  socket.on('NEW_PLAYER', (data) => {
+    io.emit('NEW_PLAYER', data);
+  });
 });

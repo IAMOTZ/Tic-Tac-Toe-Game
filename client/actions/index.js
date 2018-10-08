@@ -1,12 +1,8 @@
 import * as actionTypes from './actionTypes';
+import socket from '../socket';
 
-export const setPlayerName = playerName => ({
-  type: actionTypes.SET_PLAYER_NAME,
-  payload: { playerName },
-});
-
-export const setPlayerSymbol = playerSymbol => ({
-  type: actionTypes.SET_PLAYER_SYMBOL,
+export const newPlayer = playerSymbol => ({
+  type: actionTypes.NEW_PLAYER,
   payload: { playerSymbol },
 });
 
@@ -19,3 +15,11 @@ export const createGame = (gameID, playerSymbol) => ({
   type: actionTypes.CREATE_GAME,
   payload: { gameID, playerSymbol },
 });
+
+export const joinGame = (gameID, playerSymbol) => {
+  socket.emit('NEW_PLAYER', { gameID, playerSymbol });
+  return {
+    type: actionTypes.JOIN_GAME,
+    payload: { gameID, playerSymbol },
+  };
+};
