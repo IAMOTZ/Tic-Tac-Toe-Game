@@ -20,3 +20,8 @@ export const joinGame = (gameID, playerSymbol, firstPlayer) => {
     payload: { gameID, playerSymbol, firstPlayer },
   };
 };
+
+export const placeSymbol = (xCord, yCord) => ({
+  type: actionTypes.PLACE_SYMBOL,
+  payload: { xCord, yCord },
+});

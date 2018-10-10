@@ -40,6 +40,16 @@ export default (state = initialState, action) => {
         gameStatus: 'start game',
       };
     }
+    case actionTypes.PLACE_SYMBOL: {
+      const { xCord, yCord } = action.payload;
+      const updatedGameBoard = [...state.gameBoard];
+      updatedGameBoard[yCord][xCord].symbol = state.currentPlayer;
+      return {
+        ...state,
+        currentPlayer: state.currentPlayer === 'X' ? 'O' : 'X',
+        gameBoard: updatedGameBoard,
+      };
+    }
     default:
       return state;
   }

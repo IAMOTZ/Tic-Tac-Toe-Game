@@ -23,4 +23,7 @@ io.on('connection', (socket) => {
   socket.on('NEW_PLAYER', (data) => {
     io.emit('NEW_PLAYER', data);
   });
+  socket.on('PLACE_SYMBOL', (data) => {
+    io.emit('PLACE_SYMBOL', data);
+  });
 });
